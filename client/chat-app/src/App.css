@@ -1,0 +1,47 @@
+#contact-header {
+
+  background: #041532;
+  color: white;
+}
+
+.you {
+  background: #041532;
+  color: white;
+}
+
+.other {
+  background: #0C3D90;
+  color: white;
+}
+
+.scroll {
+  height: 100vh;
+  overflow: auto;
+}
+
+.empty-message {
+  color: #041532;
+}
+
+.notif {
+  position: relative;
+}
+
+.img-notif {
+  max-width: 1.5rem;
+}
+
+.circle {
+  width: .7rem;
+  height: .7rem;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.notif-content {
+  max-height: 8rem;
+  overflow-y: scroll;
+}
