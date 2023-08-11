@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { ChatContext } from '../contexts/ChatContext';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { v4 as uuidv4 } from 'uuid';
@@ -65,9 +65,7 @@ function Chat() {
 
         socket.on("receive", (data) => {
 
-            console.log(data)
             if (currentUserInChat?.username) {
-                // console.log(data.messages);
                 setMessages(data.messages);
                 setUsers(data.registeredUsers);
 
