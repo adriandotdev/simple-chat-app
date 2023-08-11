@@ -1,17 +1,41 @@
+.login-title {
+  font-weight: 900;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #F9D315;
+  text-shadow: 2px 2px black;
+}
+
+.login-image {
+  box-shadow: 20px 35px #F9D315;
+  background-color: red;
+}
+
+.login-img {
+  width: 100%;
+}
+
 #contact-header {
 
-  background: #041532;
-  color: white;
+  background: white;
+  color: rgb(95, 95, 95);
+  border: .5px solid #eeeeee;
+}
+
+.user-profile-title {
+  color: #F9D315;
+  text-shadow: 1px 2px black;
 }
 
 .you {
-  background: #041532;
-  color: white;
+  background: #fce98d;
+  color: black;
+  font-weight: 500;
 }
 
 .other {
-  background: #0C3D90;
-  color: white;
+  background: #F9D315;
+  color: black;
+  font-weight: 500;
 }
 
 .scroll {
@@ -34,7 +58,7 @@
 .circle {
   width: .7rem;
   height: .7rem;
-  background-color: red;
+  background-color: #F9D315;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -44,4 +68,24 @@
 .notif-content {
   max-height: 8rem;
   overflow-y: scroll;
+}
+
+.btn-logout {
+  cursor: pointer;
+}
+
+.contact-item {
+  color: rgb(95, 95, 95);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.contact-item:hover {
+  background: #fce98d;
+  transition: all 300ms;
+}
+
+.contact-item:hover * {
+
+  color: black;
 }
