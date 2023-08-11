@@ -180,7 +180,7 @@ app.post('/logout', (req, res) => {
     return res.status(200).json({ message: 'Logged out!' });
 })
 
-// IO Connection
+/** ================================================================================= EVENTS AND EMITTERS ================================================================================= */
 io.on("connection", (socket) => {
 
     socket.on("join_room", (data) => {
@@ -202,6 +202,10 @@ io.on("connection", (socket) => {
 
         messages.push(data.message)
 
+        /** 
+         * We need to check first if the current user in chat is not equal to the logged in user, so that whenever
+         * the logged in user have a message for his/her own account, it will added to notifications.
+         */
         if (data.currentUserInChat.username !== data.message.username) {
             userToNotify.notifications.contents.unshift(`${data.loggedInUser.name} sent you a message.`);
             userToNotify.notifications.count = 1;
@@ -222,9 +226,13 @@ io.on("connection", (socket) => {
 
         const userToNotify = registeredUsers.find(user => user.username === data.currentUserInChat.username);
 
+        /**
+        * We need to check first if the current user in chat is not equal to the logged in user, so that whenever
+        * the logged in user have a message for his/her own account, it will added to notifications.
+        */
         if (data.currentUserInChat.username !== data.loggedInUser.username) {
             userToNotify.notifications.contents.unshift(`${data.loggedInUser.name} unsent a message.`);
-            userToNotify.notifications.count = 1;
+            userToNotify.notifications.count = 1; // We set to 1 to know that it has a notification.
 
             registeredUsers = registeredUsers.map(user => {
 
