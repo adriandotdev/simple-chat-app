@@ -128,7 +128,12 @@ function Chat() {
                     }} className='mt-auto d-flex' action="">
                         <textarea placeholder="Type your message here..." rows="1" value={message} onChange={(e) => setMessage(e.target.value)} className='form-control' type="text" name="message" id="message" ></textarea>
                         <button className='btn btn-warning fw-bold'>Send</button>
-                        {isUpdating && <button className='btn btn-outline fw-bold'>Cancel</button>}
+                        {isUpdating && <button onClick={(e) => {
+                            e.preventDefault();
+                            setIsUpdating(false);
+                            setIdToUpdate('');
+                            setMessage('');
+                        }} className='btn btn-outline fw-bold'>Cancel</button>}
                     </form>
                 </> : <div style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
                     <p className='h5 empty-message fw-bold'>Choose a contact to begin messaging.</p>
