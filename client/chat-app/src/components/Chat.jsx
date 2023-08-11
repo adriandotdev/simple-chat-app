@@ -16,7 +16,8 @@ function Chat() {
 
             const id = uuidv4();
 
-            await socket.emit('send_message', { loggedInUser, currentUserInChat, message: { id, message, username: loggedInUser.username, to: currentUserInChat.username } });
+            const data = { loggedInUser, currentUserInChat, message: { id, message, username: loggedInUser.username, to: currentUserInChat.username } }
+            await socket.emit('send_message', data);
 
             setMessages([...messages, { id, message, username: loggedInUser.username, to: currentUserInChat.username }]);
 
@@ -80,7 +81,7 @@ function Chat() {
 
             {
                 currentUserInChat.username ? <>
-                    <div id="contact-header" style={{ border: '1px solid #ccc' }} className='p-2 mb-3 fw-bold'>
+                    <div id="contact-header" className='p-2 mb-3 fw-bold'>
                         <span className="d-block">{currentUserInChat.name}</span>
                     </div>
                     <ScrollToBottom className='scroll'>
@@ -128,11 +129,11 @@ function Chat() {
                         }
                     }} className='mt-auto d-flex' action="">
                         <textarea placeholder="Type your message here..." rows="1" value={message} onChange={(e) => setMessage(e.target.value)} className='form-control' type="text" name="message" id="message" ></textarea>
-                        <button className='btn btn-success'>Send</button>
-                        {isUpdating && <button className='btn btn-danger'>Cancel</button>}
+                        <button className='btn btn-warning fw-bold'>Send</button>
+                        {isUpdating && <button className='btn btn-outline fw-bold'>Cancel</button>}
                     </form>
                 </> : <div style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
-                    <p className='h5 empty-message fw-bold'>Select a contact to start messaging</p>
+                    <p className='h5 empty-message fw-bold'>Choose a contact to begin messaging.</p>
                 </div>
             }
         </div>
