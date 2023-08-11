@@ -17,39 +17,74 @@ const io = new Server(server, {
 })
 
 let messages = [];
-let registeredUsers = [{
-    username: 'andrea',
-    password: 'mypassword',
-    name: 'Andrea Brillantes',
-    roomId: 'andrea',
-    isOnline: false,
-    notifications: {
-        contents: [],
-        count: 0
+let registeredUsers = [
+    {
+        username: 'katara',
+        password: 'mypassword',
+        name: 'Katara',
+        roomId: 'mikaela',
+        isOnline: false,
+        notifications: {
+            contents: [],
+            count: 0
+        }
+    },
+    {
+        username: 'avatar',
+        password: 'mypassword',
+        name: 'Aang',
+        roomId: 'andrea',
+        isOnline: false,
+        notifications: {
+            contents: [],
+            count: 0
+        }
+    },
+    {
+        username: 'fireprince',
+        password: 'mypassword',
+        name: 'Zuko',
+        roomId: 'jessa',
+        isOnline: false,
+        notifications: {
+            contents: [],
+            count: 0
+        }
+    },
+    {
+        username: 'boomerang',
+        password: 'mypassword',
+        name: 'Sokka',
+        roomId: 'jessa',
+        isOnline: false,
+        notifications: {
+            contents: [],
+            count: 0
+        }
+    },
+    {
+        username: 'earthbending',
+        password: 'mypassword',
+        name: 'Toph',
+        roomId: 'jessa',
+        isOnline: false,
+        notifications: {
+            contents: [],
+            count: 0
+        }
+    },
+    {
+        username: 'kyoshi',
+        password: 'mypassword',
+        name: 'Suki',
+        roomId: 'jessa',
+        isOnline: false,
+        notifications: {
+            contents: [],
+            count: 0
+        }
     }
-},
-{
-    username: 'juanluna',
-    password: 'mypassword',
-    name: 'Juan Luna',
-    roomId: 'andrea',
-    isOnline: false,
-    notifications: {
-        contents: [],
-        count: 0
-    }
-},
-{
-    username: 'jessa',
-    password: 'mypassword',
-    name: 'Jessa Ko',
-    roomId: 'jessa',
-    isOnline: false,
-    notifications: {
-        contents: [],
-        count: 0
-    }
-}];
+];
 
 app.post('/api/v1/login', (req, res) => {
 
@@ -188,7 +223,7 @@ io.on("connection", (socket) => {
         const userToNotify = registeredUsers.find(user => user.username === data.currentUserInChat.username);
 
         if (data.currentUserInChat.username !== data.loggedInUser.username) {
-            userToNotify.notifications.contents.unshift(`${data.loggedInUser.name} deletes a message.`);
+            userToNotify.notifications.contents.unshift(`${data.loggedInUser.name} unsent a message.`);
             userToNotify.notifications.count = 1;
 
             registeredUsers = registeredUsers.map(user => {
@@ -212,12 +247,6 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => {
 
-        // registeredUsers = registeredUsers.map(user => {
-
-        //     if (user.id === socket.id)
-        //         return { id: socket.id, ...user, isOnline: false };
-        //     return { ...user };
-        // })
         socket.broadcast.emit('new_online_user', registeredUsers)
     })
 });
